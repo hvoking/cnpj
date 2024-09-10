@@ -15,14 +15,14 @@ export const Dropdown = () => {
 	} = useIsoPolygonApi();
 
 	const transportListOfValues: any = {
-		"walking": "static/components/maps/header/walking-active.svg",
-		"cycling": "static/components/maps/header/cycling-active.svg",
-		"driving": "static/components/maps/header/driving-active.svg"
+		"walking": `${process.env.PUBLIC_URL}/static/components/maps/header/walking-active.svg`,
+		"cycling": `${process.env.PUBLIC_URL}/static/components/maps/header/cycling-active.svg`,
+		"driving": `${process.env.PUBLIC_URL}/static/components/maps/header/driving-active.svg`
 	}
 
 	const timeListOfValues: any = {
-		"minutes": "static/components/maps/header/minutes-active.svg",
-		"meters": "static/components/maps/header/meters-active.svg",
+		"minutes": `${process.env.PUBLIC_URL}/static/components/maps/header/minutes-active.svg`,
+		"meters": `${process.env.PUBLIC_URL}/static/components/maps/header/meters-active.svg`,
 	}
 
 	const minutesDict: any = {

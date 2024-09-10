@@ -98,7 +98,7 @@ export const Search = ({ activeSearch, setActiveSearch }: any) => {
 		<div className="auto-complete">
 			<img 
 				className="header-search-icon"
-				src="static/components/search/search_icon.svg" 
+				src={process.env.PUBLIC_URL + "/static/components/search/search_icon.svg"}
 				alt="search-icon"
 				onClick={() => setActiveSearch((prev: boolean) => !prev)}
 			/>
@@ -117,7 +117,7 @@ export const Search = ({ activeSearch, setActiveSearch }: any) => {
 					<div className="cancel-cross-wrapper">
 						<img
 							className="cancel-cross"
-							src="static/components/search/cancel_search.svg" 
+							src={process.env.PUBLIC_URL + "/static/components/search/cancel_search.svg"}
 							alt="cancel-cross"
 							onClick={cleanSuggestions}
 						/>

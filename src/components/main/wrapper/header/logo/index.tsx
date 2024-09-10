@@ -6,7 +6,7 @@ export const Logo = () => {
 		<div className="logo-wrapper">
 			<img 
 				className="logo"
-				src="static/logos/white.svg" 
+				src={process.env.PUBLIC_URL + "/static/logos/white.svg"} 
 				alt="header-logo"
 			/>
 			<div className="logo-name">
