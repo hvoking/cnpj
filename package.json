@@ -1,0 +1,53 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://hvoking.github.io/cnpj",
+  "dependencies": {
+    "@types/d3": "^7.4.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "d3": "^7.8.2",
+    "deck.gl": "8.8.4",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "mapbox-gl": "^2.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-map-gl": "^7.0.21",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.59.3",
+    "typescript": "^5.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie 11",
+      "not chrome < 51",
+      "not safari < 10",
+      "not android < 51"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

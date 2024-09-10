@@ -1,0 +1,19 @@
+.business-main-wrapper {
+  background-color: rgba(23, 23, 34, 1);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 5fr 14fr 5fr;
+  padding: 5px;
+}
+@media screen and (max-width: 1000px) {
+  .business-main-wrapper {
+    grid-template-columns: auto;
+    grid-template-rows: auto min-content;
+  }
+}
+@media screen and (max-width: 600px) {
+  .business-main-wrapper {
+    grid-template-columns: auto;
+    grid-template-rows: 1fr 1fr;
+  }
+}

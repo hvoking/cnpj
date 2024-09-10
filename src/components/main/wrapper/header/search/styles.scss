@@ -1,0 +1,36 @@
+$font-color: rgba(255, 255, 255, 1);
+$background-color: rgba(33, 33, 43, 0);
+
+.auto-complete {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  position: relative;
+  justify-self: end;
+}
+.maps-input {
+  overflow-x: hidden;
+  color: $font-color;
+  background-color: $background-color;
+  border: none;
+  height: 30px;
+  font-size: 1em;
+  text-indent: 10px;
+}
+.maps-input:focus {
+  outline: none;
+}
+.cancel-cross-wrapper {
+  width: 30px;
+  display: grid;
+}
+.cancel-cross {
+  width: 15px;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+}
+.header-search-icon {
+  cursor: pointer;
+  height: 20px;
+  align-self: center;
+}

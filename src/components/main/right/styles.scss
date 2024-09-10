@@ -1,0 +1,19 @@
+.business-right-wrapper {
+  display: grid;
+  grid-template-rows: min-content auto;
+  grid-gap: 5px;
+  color: rgba(255, 255, 255, 1);
+}
+@media screen and (max-width: 1000px) {
+ .business-right-wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+ } 
+}
+@media screen and (max-width: 600px) {
+ .business-right-wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content auto;
+    overflow-y: scroll;
+ } 
+}
