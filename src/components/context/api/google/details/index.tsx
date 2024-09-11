@@ -5,9 +5,6 @@ import { useState, useEffect, useContext, createContext } from 'react';
 import { useGeo } from '../../../../context/filters/geo';
 import { useIsoPolygonApi } from '../../../../context/api/isoPolygon';
 
-// Variable imports
-import { cities, data } from '../../../../utils/cities';
-
 const GoogleDetailsApiContext: React.Context<any> = createContext(null)
 
 export const useGoogleDetailsApi = () => {
@@ -17,7 +14,7 @@ export const useGoogleDetailsApi = () => {
 }
 
 export const GoogleDetailsApiProvider = ({children}: any) => {
-	const { placeId, setPlaceCoordinates, setCityId } = useGeo();
+	const { placeId, setPlaceCoordinates } = useGeo();
 	const { setInitialMarker } = useIsoPolygonApi();
 	const [ googleDetailsData, setGoogleDetailsData ] = useState<any>(null);
 	
@@ -39,18 +36,11 @@ export const GoogleDetailsApiProvider = ({children}: any) => {
 	useEffect(() => {
 		if (googleDetailsData) {
 			const addressComponents = googleDetailsData.result.address_components;
+
 			const longitude = googleDetailsData.result.geometry.location.lng;
 			const latitude = googleDetailsData.result.geometry.location.lat;
-
-			for (let i = 0; i < addressComponents.length; i++) {
-			  const component = addressComponents[i];
-			  if (component.types.includes("administrative_area_level_2")) {
-			  	const currentCityName = component.long_name.toLowerCase();
-				setCityId(data[cities[currentCityName]]);
-			    break;
-			  }
-			}
-			setPlaceCoordinates({longitude: longitude, latitude: latitude});
+			const coordinates = {longitude: longitude, latitude: latitude};
+			setPlaceCoordinates(coordinates);
 			setInitialMarker(false);
 		}
 	}, [ googleDetailsData ])

@@ -9,7 +9,6 @@ import { usePolygonApi } from '../../polygon';
 import { usePropertyType } from '../../../filters/property';
 import { useEquipment } from '../../../filters/equipment';
 import { useDates } from '../../../filters/dates';
-import { usePrices } from '../../../filters/prices';
 
 const LinesApiContext: React.Context<any> = createContext(null)
 
