@@ -1,12 +1,18 @@
+// App imports
+import './styles.scss';
+
 export const Logo = () => {
 	return (
-		<div className="logo-wrapper" style={{paddingBottom: "20px", paddingLeft: "5px", paddingTop: "10px"}}>
+		<div 
+			className="pdf-logo-wrapper" 
+		>
 			<img 
-				className="logo"
-				src={process.env.PUBLIC_URL + "/static/logos/black.svg"} 
+				src={process.env.PUBLIC_URL + "/static/logos/airbnb.svg"} 
 				alt="header-logo"
 			/>
-			<div className="logo-name" style={{paddingLeft: "8px", color: "rgba(0, 0, 0, 1)"}}>Spatial Fingers</div>
+			<div className="pdf-logo-name">
+				Airbnb Metrics
+			</div>
 		</div>
 	)
 }

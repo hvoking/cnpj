@@ -2,7 +2,7 @@
 import { Prices } from './prices';
 import { Timeseries } from './timeseries';
 import { SvgMap } from './svgMap';
-import { UserMessage } from './message';
+import { UserMessage } from '../../utils/message';
 import './styles.scss';
 
 // Context imports

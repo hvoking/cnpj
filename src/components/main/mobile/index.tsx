@@ -6,9 +6,11 @@ import { Carousel, CarouselItem } from './carousel';
 import { Header } from './header';
 import { Prices } from './prices';
 import { Timeseries } from './timeseries';
-import { Description } from './description';
 import { SvgMap } from './svgMap';
 import './styles.scss';
+
+// Utils imports
+import { UserMessage } from '../../utils/message';
 
 // Context imports
 import { usePricesApi } from '../../context/api/imoveis/prices';
@@ -18,7 +20,9 @@ export const Mobile = () => {
 	const { pricesData } = usePricesApi();
 ;
 	if (!pricesData) return (
-		<Description/>		
+		<div className="bottom">
+			<UserMessage/>		
+		</div>
 	)
 
 	return (
