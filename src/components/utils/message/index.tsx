@@ -6,7 +6,7 @@ export const UserMessage = () => {
 		<div className="sidebar-item-wrapper">
 			<div style={{display: "grid", gridTemplateRows: "min-content auto"}}>
 				<div className="starting-title">
-					Drag the pin or search for a place
+					Drag the pin
 				</div>
 				<img 
 					className="starting-gif" 

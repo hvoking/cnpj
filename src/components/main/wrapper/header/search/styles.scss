@@ -1,16 +1,15 @@
-$font-color: rgba(255, 255, 255, 1);
-$background-color: rgba(33, 33, 43, 0);
-
-.auto-complete {
+.map-search-wrapper {
   display: grid;
   grid-template-columns: min-content auto min-content;
-  position: relative;
   justify-self: end;
+  padding: 2px;
+  padding-left: 10px;
+  position: relative;
 }
 .maps-input {
   overflow-x: hidden;
-  color: $font-color;
-  background-color: $background-color;
+  color: rgba(255, 255, 255, 1);
+  background-color: transparent;
   border: none;
   height: 30px;
   font-size: 1em;
@@ -29,7 +28,7 @@ $background-color: rgba(33, 33, 43, 0);
   align-self: center;
   justify-self: center;
 }
-.header-search-icon {
+.airbnb-search-icon {
   cursor: pointer;
   height: 20px;
   align-self: center;
