@@ -1,34 +1,4 @@
-.profile-wrapper {
-	width: 25px;
-	height: 25px;
-}
-.user-button:hover {
-  background-color: rgba(53, 31, 160, 1);
-}
-.yu-username {
-	color: rgba(255, 255, 255, 1);
-	white-space: nowrap;
-}
-.printer-logo {
+.download-arrow {
 	fill: rgba(126, 126, 132, 1);
-}
-.printer-logo:hover {
-	fill: rgba(255, 255, 255, 1);
 	cursor: pointer;
-}
-.pdf-letters {
-	font-size: 0.8em;
-	background-color: rgba(234, 209, 63, 1);
-	border: 1.5px solid rgba(255, 255, 255, 1);
-	color: rgba(0, 0, 0, 1);
-	border-radius: 3px;
-	padding: 5px;
-	padding-left: 7px;
-	padding-right: 7px;
-	cursor: pointer;
-	font-weight: 1000;
-}
-.pdf-letters:hover {
-	background-color: rgba(234, 209, 63, 0.8);
-	color: rgba(0, 0, 0, 0.8);
 }

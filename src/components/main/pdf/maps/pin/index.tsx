@@ -48,7 +48,7 @@ export const Pin = () => {
 		    </Marker>
 		    {initialMarker && 
 				<div className="initial-marker-text">
-					Arraste o marcador ou pesquise um lugar
+					Drag the pin or search for a place
 				</div>
 			}
 		</>
