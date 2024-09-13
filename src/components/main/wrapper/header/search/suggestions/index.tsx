@@ -1,24 +1,28 @@
 // App imports
 import './styles.scss';
 
-export const Suggestions = ({ suggestions, suggestionIndex, handleClick }: any) => {
+export const Suggestions = ({ suggestions, 	handleClick }: any) => {
 	return (
 		<ul className="search-suggestions">
 			{
 				suggestions.slice(0, 5).map((suggestion: any, index: number) => {
 					return (
-						<li
-							key={index}
-							onClick={handleClick}
-							style={{
-								backgroundColor: index === suggestionIndex ? 
-								"rgba(126, 126, 132, 1)" : 
-								index % 2 === 0 ? 
-								"rgba(126, 126, 132, 0.8)" : 
-								"rgba(126, 126, 132, 0.6)"
-							}}
+						<li 
+							key={index} 
+							className="suggestions-item"
+							onClick={(e: any) => handleClick(e, suggestion)} 
 						>
-							{suggestion}
+							<div className="current-suggestion">
+								<div style={{width: "20px"}}>
+									<img 
+										src={process.env.PUBLIC_URL + "/static/components/maps/marker.svg"}
+										alt="pin" 
+										width="15px" 
+										style={{alignSelf: "center"}}
+									/>
+								</div>
+								<div>{suggestion}</div>
+							</div>
 						</li>
 					)
 				})

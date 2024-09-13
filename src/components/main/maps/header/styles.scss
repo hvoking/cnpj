@@ -36,6 +36,7 @@ $background-color: rgba(23, 23, 32, 1);
  } 
  .map-header {
     grid-gap: 3px;
+    background-color: transparent;
   }
   .map-header:before {
     display: none;

@@ -80,6 +80,13 @@ export const Body = ({ sortKey, currentDirection }: any) => {
 						<td>
 							<div 
 								style={{
+									display: "grid",
+									alignContent: "center",
+									width: "20px",
+									height: "20px",
+									color: "rgba(255, 255, 255, 1)",
+									fontSize: "700",
+									borderRadius: "50%",
 									backgroundColor: 
 										item['price'] < bottomLimit ? 
 										"rgba(255, 0, 0, 1)" :
