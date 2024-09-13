@@ -1,5 +1,5 @@
 // React imports
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
 
 // App imports
 import { Hexagons } from './hexagons';
@@ -20,6 +20,7 @@ import * as d3 from 'd3';
 
 export const SvgMap = () => {
 	const svgContainerRef = useRef<any>(null);
+	const [ currentTransform, setCurrentTransform ] = useState<any>(null);
 
 	const { polygonData } = usePolygonApi();
 	const { isoPolygonData } = useIsoPolygonApi();
@@ -40,7 +41,8 @@ export const SvgMap = () => {
 	const onClick = (e: any) => {
 		const rect = svgContainerRef.current.getBoundingClientRect();
 		const adjustedCoordinates: any = [e.clientX - rect.left, e.clientY - rect.top];
-	    const [lng, lat]: any = projection.invert(adjustedCoordinates);
+		const transformedCoordinates = currentTransform ? currentTransform.invert(adjustedCoordinates) : adjustedCoordinates;
+	    const [lng, lat]: any = projection.invert(transformedCoordinates);
 	    setPlaceCoordinates({ latitude: lat, longitude: lng });
 	}
 
@@ -52,7 +54,7 @@ export const SvgMap = () => {
 			<div style={{display: "grid", gridTemplateColumns: "20px auto 20px"}}>
 				<div></div>
 				<div ref={svgContainerRef}>
-					<SVGWrapper>
+					<SVGWrapper setCurrentTransform={setCurrentTransform}>
 						<g onClick={onClick}>
 							<Hexagons path={path}/>
 							<Pin pinCoordinates={pinCoordinates}/>
