@@ -3,7 +3,6 @@ import { useState, useEffect, useContext, createContext } from 'react';
 
 // Context imports
 import { usePolygonApi } from '../../polygon';
-import { usePdf } from '../../../filters/pdf';
 
 const ReverseGeocodingApiContext: React.Context<any> = createContext(null)
 
@@ -15,7 +14,6 @@ export const useReverseGeocodingApi = () => {
 
 export const ReverseGeocodingApiProvider = ({children}: any) => {
 	const { polygonData } = usePolygonApi();
-	const { activePdf } = usePdf();
 	const [ currentAddress, setCurrentAddress ] = useState<any>(null);
 
 	useEffect(() => {
