@@ -13,10 +13,10 @@ export const useMapbox = () => {
 }
 
 export const MapboxProvider = ({children}: any) => {
+	const mapRef = useRef<any>();
+	
 	const [ basemap, setBasemap ] = useState("mapbox://styles/generativa/clhqor7c101lh01pe52myfwik");
 	const { viewport, setMarker } = useGeo();
-
-	const mapRef = useRef<any>();
 
 	useEffect(() => {
 		mapRef.current?.flyTo({

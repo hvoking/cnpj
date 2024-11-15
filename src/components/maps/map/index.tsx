@@ -6,6 +6,8 @@ import { Pin } from './pin';
 import { Clusters } from './clusters';
 import { IsoPolygon } from './iso';
 import { Points } from './points';
+import { Tiles } from './tiles';
+import { Mask } from './mask';
 
 // Context imports
 import { useMapbox } from 'context/mapbox';
@@ -39,8 +41,10 @@ export const MapContainer = () => {
 		>
 			<Pin/>
 			<IsoPolygon/>
-			<Clusters/>
-			<Points/>
+			<Mask/>
+			{/*<Clusters/>*/}
+			{/*<Points/>*/}
+			<Tiles/>
 		</Map>
 	)
 }
