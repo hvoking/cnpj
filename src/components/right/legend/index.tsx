@@ -1,26 +1,44 @@
 // App imports
 import './styles.scss';
 
+// Context imports
+import { useMask } from 'context/mask';
+import { cnpjProperties } from 'context/mask/properties';
+
 // Third-party imports
 import * as d3 from 'd3';
 	
 export const Legend = () => {
-	// const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
+	const { geoJsonData } = useMask();
+
+	const filteredCounts = geoJsonData && 
+		geoJsonData.features.reduce((total: any, item: any) => {
+			const currentKey = item.properties.label;
+			if (currentKey && !total[currentKey]) {
+				total[currentKey] = 1;
+			}
+			else if (currentKey) {
+				total[currentKey] += 1
+			}
+			return total
+		}, {});
+
+	const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
 	
-	// const linearScale = totalCount && d3.scaleLinear()
-	// 	.domain([0, totalCount])
-	// 	.range([0, 100]);
+	const linearScale = totalCount && d3.scaleLinear()
+		.domain([0, totalCount])
+		.range([0, 100]);
 
-	// const parcialCounts: any = {}
+	const parcialCounts: any = {}
 
-	// totalCount && Object.keys(filteredCounts).filter((item: any) => {
-	// 	const currentCount = filteredCounts[item];
-	// 	parcialCounts[item] = Math.round(linearScale(currentCount))
-	// });
+	totalCount && Object.keys(filteredCounts).filter((item: any) => {
+		const currentCount = filteredCounts[item];
+		parcialCounts[item] = Math.round(linearScale(currentCount))
+	});
 
 	return (
 		<>
-		{/*{totalCount && <div className="business-legend">
+		{totalCount && <div className="business-legend">
 			{Object.keys(parcialCounts).map((item: any, index: any) => {
 				return (
 					<div key={index} className="business-legend-item">
@@ -28,9 +46,9 @@ export const Legend = () => {
 							borderRadius: "50%",
 							width: "15px",
 							height: "15px",
-							backgroundColor: properties[item].color
+							backgroundColor: cnpjProperties[item].color
 						}}/>
-						<div>{properties[item].legend}</div>
+						<div>{cnpjProperties[item].legend}</div>
 						<svg width="100%" height="12px">
 							<line
 								x1="0"
@@ -57,7 +75,7 @@ export const Legend = () => {
 					</div>
 				)
 			})}
-		</div>}*/}
+		</div>}
 		</>
 	)
 }
