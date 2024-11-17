@@ -1,4 +1,4 @@
-.business-legend {
+.legend-wrapper {
   background-color: rgba(33, 33, 43, 1);
   border-radius: 10px;
   display: grid;
@@ -7,9 +7,14 @@
   padding-left: 30px;
   white-space: nowrap;
 }
-.business-legend-item {
+.legend {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: min-content min-content auto min-content;
   align-items: center;
+}
+.legend-item {
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
 }

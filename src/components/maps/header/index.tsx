@@ -2,7 +2,7 @@
 import { Dropdown } from './dropdown';
 import './styles.scss';
 
-export const MapHeader = () => {
+export const Header = () => {
 	return (
 		<div className="map-header-wrapper">
 			<div></div>
@@ -14,4 +14,4 @@ export const MapHeader = () => {
 	)
 }
 
-MapHeader.displayName="MapHeader";
+Header.displayName="Header";

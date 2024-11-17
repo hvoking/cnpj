@@ -55,16 +55,20 @@ export const MaskProvider = ({children}: any) => {
 	    const { geometry, properties } = maskProp;
 	    const { cnae_divisao } = properties;
 
+	    const coord = geometry.coordinates;
+	    const color = getColor(cnpjProperties, cnae_divisao);
+	    const label = getLabel(cnpjProperties, cnae_divisao);
+
 	    return [{
 	      type: 'Feature',
 	      geometry: {
 	        type: 'Point',
-	        coordinates: geometry.coordinates,
+	        coordinates: coord,
 	      },
 	      properties: {
 	        ...properties,
-	        color: getColor(cnpjProperties, cnae_divisao),
-	        label: getLabel(cnpjProperties, cnae_divisao)
+	        color: color,
+	        label: label
 	      }
 	    }];
 	  });
