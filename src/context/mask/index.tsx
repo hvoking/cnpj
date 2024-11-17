@@ -1,9 +1,13 @@
 // React imports
 import { useState, useEffect, useMemo, useContext, createContext } from 'react';
 
+// App imports
+import { getLabel, getColor } from './utils';
+import { cnpjProperties } from './properties';
+
 // Context imports
-import { useMapbox } from 'context/mapbox';
-import { useIsoPolygonApi } from 'context/api/isoPolygon';
+import { useGeo } from 'context/geo';
+import { useIsochrone } from 'context/api/isochrone';
 
 // Third-party imports
 import * as turf from '@turf/turf';
@@ -17,10 +21,10 @@ export const useMask = () => {
 }
 
 export const MaskProvider = ({children}: any) => {
-	const { mapRef } = useMapbox();
-	const { isoPolygonData } = useIsoPolygonApi();
+	const { mapRef } = useGeo();
+	const { isochroneData } = useIsochrone();
 
-	const [ mapFeatures, setMapFeatures ] = useState([]);
+	const [ maskProperties, setMaskProperties ] = useState([]);
 	const [ activeFeatures, setActiveFeatures ] = useState(false);
 
 	useEffect(() => {
@@ -35,21 +39,41 @@ export const MaskProvider = ({children}: any) => {
 		const map = mapRef.current;
 		if (!map) return;
 		const features = map.queryRenderedFeatures();
-		setMapFeatures(features);
-	}, [ activeFeatures, mapRef.current ]);
+		const maskFeatures = features.filter((item: any) => {
+			const featureGeometry = isochroneData.features[0].geometry;
+			if (item.source === 'sc-business') {
+			    return turf.booleanPointInPolygon(item.geometry, featureGeometry);
+			}
+		});	
+		setMaskProperties(maskFeatures);
+	}, [ activeFeatures ]);
 
-	const maskProperties = useMemo(() => {
-	    return mapFeatures.filter((item: any) => {
-	        if (item.source === 'sc-business') {
-	            return turf.booleanPointInPolygon(item.geometry, isoPolygonData.features[0].geometry);
-	            // return true
-	        }
-	    return false
-	    });
-	}, [ mapFeatures, isoPolygonData ]);
+	const geoJsonData: any = useMemo(() => {
+	  if (!maskProperties || maskProperties.length === 0) return null;
+
+	  const features = maskProperties.flatMap((maskProp: any) => {
+	    const { geometry, properties } = maskProp;
+	    const { cnae_divisao } = properties;
+
+	    return [{
+	      type: 'Feature',
+	      geometry: {
+	        type: 'Point',
+	        coordinates: geometry.coordinates,
+	      },
+	      properties: {
+	        ...properties,
+	        color: getColor(cnpjProperties, cnae_divisao),
+	        label: getLabel(cnpjProperties, cnae_divisao)
+	      }
+	    }];
+	  });
+
+	  return features.length > 0 ? { type: 'FeatureCollection', features } : null;
+	}, [maskProperties]);
 
 	return (
-		<MaskContext.Provider value={{ maskProperties }}>
+		<MaskContext.Provider value={{ geoJsonData }}>
 			{children}
 		</MaskContext.Provider>
 	)

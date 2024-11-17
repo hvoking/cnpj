@@ -5,13 +5,15 @@ import { useCallback } from 'react';
 import './styles.scss';
 
 // Context imports
-import { useGeo } from 'context/filters/geo';
+import { useGeo } from 'context/geo';
 
 // Third-party imports
 import { Marker } from 'react-map-gl';
 
 export const Pin = () => {
-	const { marker, setMarker, setPlaceCoordinates } = useGeo();
+	const { marker, setMarker, setViewport } = useGeo();
+
+	const { longitude, latitude } = marker;
 
 	const onMarkerDrag = useCallback((event: any) => {
 		setMarker({
@@ -21,17 +23,15 @@ export const Pin = () => {
 	}, []);
 
 	const onMarkerDragEnd = useCallback((event: any) => {
-		setPlaceCoordinates({
-			longitude: event.lngLat.lng,
-			latitude: event.lngLat.lat
-		});
+		const { lat, lng } = event.lngLat;
+		setViewport((prev: any) => ({...prev, longitude: lng, latitude: lat }));
 	}, []);
-	  
+
 	return (
 		<>
 			<Marker
-		      longitude={marker.longitude}
-		      latitude={marker.latitude}
+		      longitude={longitude}
+		      latitude={latitude}
 		      anchor="bottom"
 		      draggable
 		      onDrag={onMarkerDrag}

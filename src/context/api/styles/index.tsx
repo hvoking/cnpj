@@ -1,15 +1,15 @@
 // React imports
 import { useContext, createContext } from 'react';
 
-const StylesApiContext: React.Context<any> = createContext(null)
+const StylesContext: React.Context<any> = createContext(null)
 
-export const useStylesApi = () => {
+export const useStyles = () => {
 	return (
-		useContext(StylesApiContext)
+		useContext(StylesContext)
 	)
 }
 
-export const StylesApiProvider = ({children}: any) => {
+export const StylesProvider = ({children}: any) => {
 	const fetchData = async (tableSchema: string, tableName: string) => {
 		const url = `
 	    	${process.env.REACT_APP_API_URL}/
@@ -36,10 +36,10 @@ export const StylesApiProvider = ({children}: any) => {
 	}
 
 	return (
-		<StylesApiContext.Provider value={{ fetchData, getTilesUrl }}>
+		<StylesContext.Provider value={{ fetchData, getTilesUrl }}>
 			{children}
-		</StylesApiContext.Provider>
+		</StylesContext.Provider>
 	)
 }
 
-StylesApiContext.displayName = "StylesApiContext";
+StylesContext.displayName = "StylesContext";

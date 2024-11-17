@@ -1,5 +1,4 @@
 // App imports
-import { Left } from './left';
 import { Maps } from './maps';
 import { Right } from './right';
 import { Wrapper } from './wrapper';
@@ -13,7 +12,6 @@ export const Main = () => {
 		<MainProvider>
 			<Wrapper>
 				<div className="business-main-wrapper">
-					<Left/>
 					<Maps/>
 					<Right/>
 				</div>

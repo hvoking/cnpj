@@ -4,7 +4,9 @@ import { FiltersDropdown } from './type';
 import './styles.scss';
 
 // Context imports
-import { useIsoPolygonApi } from 'context/api/isoPolygon';
+import { useIsochrone } from 'context/api/isochrone';
+
+const baseUrl = `${process.env.PUBLIC_URL}/static/components/maps/header`
 
 export const Dropdown = () => {
 	const { 
@@ -12,17 +14,17 @@ export const Dropdown = () => {
 		contoursType, setContoursType, 
 		contoursMinutes, contoursMeters, 
 		setContoursMinutes, setContoursMeters 
-	} = useIsoPolygonApi();
+	} = useIsochrone();
 
 	const transportListOfValues: any = {
-		"walking": `${process.env.PUBLIC_URL}/static/components/maps/header/walking-active.svg`,
-		"cycling": `${process.env.PUBLIC_URL}/static/components/maps/header/cycling-active.svg`,
-		"driving": `${process.env.PUBLIC_URL}/static/components/maps/header/driving-active.svg`
+		"walking": `${baseUrl}/walking-active.svg`,
+		"cycling": `${baseUrl}/cycling-active.svg`,
+		"driving": `${baseUrl}/driving-active.svg`
 	}
 
 	const timeListOfValues: any = {
-		"minutes": `${process.env.PUBLIC_URL}/static/components/maps/header/minutes-active.svg`,
-		"meters": `${process.env.PUBLIC_URL}/static/components/maps/header/meters-active.svg`,
+		"minutes": `${baseUrl}/minutes-active.svg`,
+		"meters": `${baseUrl}/meters-active.svg`,
 	}
 
 	const minutesDict: any = {

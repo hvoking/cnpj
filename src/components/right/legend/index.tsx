@@ -1,31 +1,26 @@
 // App imports
 import './styles.scss';
 
-// Context imports
-import { useCnpjApi } from 'context/api/cnpj';
-
 // Third-party imports
 import * as d3 from 'd3';
 	
 export const Legend = () => {
-	const { filteredCounts, cnpjProperties } = useCnpjApi();
-
-	const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
+	// const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
 	
-	const linearScale = totalCount && d3.scaleLinear()
-		.domain([0, totalCount])
-		.range([0, 100]);
+	// const linearScale = totalCount && d3.scaleLinear()
+	// 	.domain([0, totalCount])
+	// 	.range([0, 100]);
 
-	const parcialCounts: any = {}
+	// const parcialCounts: any = {}
 
-	totalCount && Object.keys(filteredCounts).filter((item: any) => {
-		const currentCount = filteredCounts[item];
-		parcialCounts[item] = Math.round(linearScale(currentCount))
-	});
+	// totalCount && Object.keys(filteredCounts).filter((item: any) => {
+	// 	const currentCount = filteredCounts[item];
+	// 	parcialCounts[item] = Math.round(linearScale(currentCount))
+	// });
 
 	return (
 		<>
-		{totalCount && <div className="business-legend">
+		{/*{totalCount && <div className="business-legend">
 			{Object.keys(parcialCounts).map((item: any, index: any) => {
 				return (
 					<div key={index} className="business-legend-item">
@@ -33,9 +28,9 @@ export const Legend = () => {
 							borderRadius: "50%",
 							width: "15px",
 							height: "15px",
-							backgroundColor: cnpjProperties[item].color
+							backgroundColor: properties[item].color
 						}}/>
-						<div>{cnpjProperties[item].legend}</div>
+						<div>{properties[item].legend}</div>
 						<svg width="100%" height="12px">
 							<line
 								x1="0"
@@ -62,7 +57,7 @@ export const Legend = () => {
 					</div>
 				)
 			})}
-		</div>}
+		</div>}*/}
 		</>
 	)
 }

@@ -1,4 +1,4 @@
-export const cnpjProperties = {
+export const cnpjProperties: any = {
 	"alimentacao": {
 		"label": "Alimentação",
 		"legend": "food",

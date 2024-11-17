@@ -1,6 +1,6 @@
 $background-color: rgba(23, 23, 32, 1);
 
-.business-map-header-wrapper {
+.map-header-wrapper {
   width: 100%;
   position: absolute;
   display: grid;
@@ -31,7 +31,7 @@ $background-color: rgba(23, 23, 32, 1);
 }
 // mobile-style
 @media screen and (max-width: 600px) {
- .business-map-header-wrapper {
+ .map-header-wrapper {
    grid-template-columns: auto;
  } 
  .business-map-header {

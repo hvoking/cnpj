@@ -1,11 +1,11 @@
 // Context imports
-import { useIsoPolygonApi } from 'context/api/isoPolygon';
+import { useIsochrone } from 'context/api/isochrone';
 
 // Third party imports
 import { Source, Layer } from 'react-map-gl';
 
-export const IsoPolygon = () => {
-	const { isoPolygonData } = useIsoPolygonApi();
+export const Isochrone = () => {
+	const { isochroneData } = useIsochrone();
 
 	const isoLayer: any = {
 	    id: 'isolayer',
@@ -26,8 +26,8 @@ export const IsoPolygon = () => {
 	          type: 'Feature',
 	          geometry: {
 	            type: 'Polygon',
-	            coordinates: isoPolygonData ? 
-	            isoPolygonData.features[0].geometry.coordinates
+	            coordinates: isochroneData ? 
+	            isochroneData.features[0].geometry.coordinates
 	            : [],
 	          },
 	        },
@@ -41,3 +41,5 @@ export const IsoPolygon = () => {
 		</Source>
 	)
 }
+
+Isochrone.displayName="Isochrone";

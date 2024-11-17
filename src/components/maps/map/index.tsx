@@ -3,29 +3,23 @@ import { useCallback } from 'react';
 
 // App imports
 import { Pin } from './pin';
-import { Clusters } from './clusters';
-import { IsoPolygon } from './iso';
-import { Points } from './points';
+import { Isochrone } from './iso';
 import { Tiles } from './tiles';
-import { Mask } from './mask';
+import { Clusters } from './clusters';
 
 // Context imports
-import { useMapbox } from 'context/mapbox';
-import { useGeo } from 'context/filters/geo';
+import { useGeo } from 'context/geo';
 
 // Third-party imports
 import { Map } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 export const MapContainer = () => {
-	const { viewport, setMarker, setPlaceCoordinates } = useGeo();
-	const { mapRef, basemap } = useMapbox();
+	const { viewport, setMarker, setViewport, mapRef, basemap } = useGeo();
 
-	const onDblClick = useCallback((e: any) => {
-		const lng = e.lngLat.lng;
-		const lat = e.lngLat.lat;
-		
-		setPlaceCoordinates({ longitude: lng, latitude: lat });
+	const onDblClick = useCallback((event: any) => {
+		const { lat, lng } = event.lngLat;
+		setViewport((prev: any) => ({...prev, longitude: lng, latitude: lat }));
 		setMarker({ longitude: lng, latitude: lat });
 	}, []); 
 
@@ -40,10 +34,8 @@ export const MapContainer = () => {
 			preserveDrawingBuffer={true}
 		>
 			<Pin/>
-			<IsoPolygon/>
-			<Mask/>
-			{/*<Clusters/>*/}
-			{/*<Points/>*/}
+			<Isochrone/>
+			<Clusters/>
 			<Tiles/>
 		</Map>
 	)

@@ -1,34 +1,16 @@
-// React imports
-import { useState } from 'react';
-
 // App imports
-import { Logo } from './logo';
-import { Search } from './search';
-import { BackArrow } from './arrow';
 import './styles.scss';
 
 export const Header = () => {
-	const [ activeSearch, setActiveSearch ] = useState(false);
-	
 	return (
 		<div className="m2b-header">
-			<div className="normal-header">
-				<Logo/>
-			</div>
-			<div className="small-header">
-				{
-					!activeSearch ? 
-					<Logo/> : 
-					<BackArrow setActiveSearch={setActiveSearch}/>
-				}
-			</div>
-			<div></div>
-			<Search 
-				activeSearch={activeSearch} 
-				setActiveSearch={setActiveSearch}
+			<img 
+				className="logo"
+				src={process.env.PUBLIC_URL + "/static/logos/logo.svg"} 
+				alt="header-logo"
 			/>
 		</div>
 	)
 }
 
-Header.displayName="Header"
+Header.displayName="Header";

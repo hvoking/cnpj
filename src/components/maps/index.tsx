@@ -5,7 +5,7 @@ import './styles.scss';
 
 export const Maps = () => {
 	return (
-		<div className="business-map">
+		<div className="map-wrapper">
 			<MapHeader/>
 			<MapContainer/>
 		</div>
