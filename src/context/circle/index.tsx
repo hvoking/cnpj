@@ -1,9 +1,6 @@
 // React imports
 import { useState, useContext, createContext } from 'react';
 
-// Context imports
-import { useGeo } from 'context/geo';
-
 // Third-party libraries
 import * as turf from '@turf/turf';
 
@@ -16,22 +13,20 @@ export const useCircle = () => {
 }
 
 export const CircleProvider = ({children}: any) => {
-	const { marker } = useGeo();
 	
-	const [ radiusPosition, setRadiusPosition ] = useState(1);
-	const [ circleRadius, setCircleRadius ] = useState(1);
 	
-	const minBound = 0.1;
-	const maxBound = 3;
 
-	const circleGeometry: any = turf.circle([marker.longitude, marker.latitude], circleRadius);
+	const createCircle = (center: any, circleRadius: any) => {
+		const circleGeometry: any = turf.circle(center, circleRadius);	
+		// const difference = turf.difference(turf.featureCollection([wrapperGeometry, circleGeometry]));
+		return circleGeometry
+	}
+
+
 
 	return (
 		<CircleContext.Provider value={{ 
-			circleGeometry,
-			circleRadius, setCircleRadius,
-			radiusPosition, setRadiusPosition,
-			maxBound, minBound
+			createCircle
 		}}>
 			{children}
 		</CircleContext.Provider>

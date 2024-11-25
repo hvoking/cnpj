@@ -12,8 +12,8 @@ export const Isochrone = () => {
 	    type: 'fill',
 	    source: 'isoSource',
 	    paint: {
-	      'fill-color': 'rgb(222, 112, 112)',
-	      'fill-opacity': 0.2,
+	      'fill-color': 'rgb(206, 171, 165)',
+	      'fill-opacity': 0.4,
 	    },
 	  };
 

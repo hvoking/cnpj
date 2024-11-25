@@ -6,13 +6,7 @@
   padding: 5px;
   grid-gap: 5px;
 }
-@media screen and (max-width: 1000px) {
-  .main-wrapper {
-    grid-template-columns: auto;
-    grid-template-rows: auto min-content;
-  }
-}
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .main-wrapper {
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr;

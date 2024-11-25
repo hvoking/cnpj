@@ -1,0 +1,20 @@
+.circle-wrapper {
+	left: 20px;
+	top: 20px;
+	position: absolute;
+	display: grid; 
+	width: 200px;
+	height: 200px;
+	color: rgba(0, 0, 0, 1);
+	background-color: rgba(249, 244, 241, 1);
+	grid-template-rows: auto min-content;
+}
+.distance-info {
+	display: flex; 
+	gap: 10px;
+	text-align: center; 
+	white-space: nowrap;
+	justify-content: space-between;
+	padding-right: 20px;
+	padding-left: 20px;
+}

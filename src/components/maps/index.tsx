@@ -2,12 +2,12 @@
 import { useCallback } from 'react';
 
 // App imports
-import { Pin } from './pin';
 import { Isochrone } from './iso';
 import { Tiles } from './tiles';
 import { Clusters } from './clusters';
 import { Circle } from './circle';
 import { Avatar } from './avatar';
+import { Catchment } from '../catchment';
 import './styles.scss';
 
 // Context imports
@@ -46,13 +46,13 @@ export const Maps = () => {
 		        onTouchEnd={onDragEnd}
 		        dragPan={!isDragging}
 			>
-				<Pin/>
 				<Isochrone/>
+				<Circle/>
 				<Clusters/>
 				<Tiles/>
-				<Circle/>
 				<Avatar/>
 			</Map>
+			<Catchment/>
 		</div>
 	)
 }
