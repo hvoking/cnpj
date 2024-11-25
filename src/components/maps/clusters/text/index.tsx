@@ -8,6 +8,9 @@ export const createText = (source: string): LayerProps => ({
   filter: ['has', 'point_count'],
   layout: {
     'text-field': '{point_count_abbreviated}',
-    'text-size': 12
+    'text-size': 12,
+  },
+  paint: {
+    'text-color': 'rgba(255, 255, 255, 1)',
   }
 });

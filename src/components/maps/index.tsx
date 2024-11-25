@@ -2,7 +2,6 @@
 import { useCallback } from 'react';
 
 // App imports
-import { Header } from './header';
 import { Pin } from './pin';
 import { Isochrone } from './iso';
 import { Tiles } from './tiles';
@@ -27,7 +26,6 @@ export const Maps = () => {
 
 	return (
 		<div className="map-wrapper">
-			<Header/>
 			<Map
 				ref={mapRef}
 				initialViewState={viewport}

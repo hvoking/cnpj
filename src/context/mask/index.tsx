@@ -74,7 +74,7 @@ export const MaskProvider = ({children}: any) => {
 	  });
 
 	  return features.length > 0 ? { type: 'FeatureCollection', features } : null;
-	}, [maskProperties]);
+	}, [ maskProperties ]);
 
 	return (
 		<MaskContext.Provider value={{ geoJsonData }}>

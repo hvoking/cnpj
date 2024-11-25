@@ -1,6 +1,7 @@
 // App imports
 import { Balls } from './balls';
-import { Legend } from './legend';
+// import { Legend } from './legend';
+import { Gauge } from './gauge';
 import './styles.scss';
 
 // Context imports
@@ -13,34 +14,51 @@ import * as d3 from 'd3';
 export const Right = () => {
 	const { geoJsonData } = useMask();
 
-	const filteredCounts = geoJsonData && 
-		geoJsonData.features.reduce((total: any, item: any) => {
-			const currentKey = item.properties.label;
-			if (currentKey && !total[currentKey]) {
-				total[currentKey] = 1;
-			}
-			else if (currentKey) {
-				total[currentKey] += 1
-			}
-			return total
-		}, {});
+	const filteredCounts = geoJsonData &&
+        geoJsonData.features.reduce((total: any, item: any) => {
+            const currentKey = item.properties.label;
+            if (currentKey) {
+                total[currentKey] = (total[currentKey] || 0) + 1;
+            }
+            return total;
+        }, {});
 
 	const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
 	const parcialCounts: any = {}
 	
-	const linearScale = totalCount && d3.scaleLinear()
-		.domain([0, totalCount])
-		.range([0, 100]);
+	if (totalCount) {
+        const scaledCounts = Object.keys(filteredCounts).map((key: any) => ({
+            key,
+            count: filteredCounts[key],
+            percentage: filteredCounts[key] / totalCount,
+        }));
 
-	totalCount && Object.keys(filteredCounts).forEach((item: any) => {
-		const currentCount = filteredCounts[item];
-		parcialCounts[item] = Math.round(linearScale(currentCount))
-	});
-
+        let remaining = 100;
+        scaledCounts.forEach((item, index) => {
+            const isLast = index === scaledCounts.length - 1;
+            const count = isLast
+                ? remaining // Allocate remaining balls to the last category
+                : Math.round(item.percentage * 100);
+            parcialCounts[item.key] = count;
+            remaining -= count;
+        });
+    }
 	return (
 		<div className="right-wrapper">
-			<Balls cnpjProperties={cnpjProperties} parcialCounts={parcialCounts}/>
-			<Legend cnpjProperties={cnpjProperties} parcialCounts={parcialCounts}/>
+			<Balls 
+				cnpjProperties={cnpjProperties} 
+				parcialCounts={parcialCounts}
+			/>
+			{/*<Legend 
+				cnpjProperties={cnpjProperties} 
+				parcialCounts={parcialCounts}
+			/>*/}
+			<div className="legend-wrapper">
+			<Gauge 
+				cnpjProperties={cnpjProperties}
+				parcialCounts={parcialCounts}
+			/>
+			</div>
 		</div>
 	)
 }

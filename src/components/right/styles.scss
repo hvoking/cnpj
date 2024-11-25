@@ -1,8 +1,21 @@
 .right-wrapper {
   display: grid;
-  grid-template-rows: min-content auto;
   grid-gap: 5px;
-  color: rgba(255, 255, 255, 1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.right-component-wrapper {
+  background-color: rgba(249, 244, 241, 1);
+  padding: 20px;
+  max-width: calc(100% - 40px);
+}
+.legend-wrapper {
+  background-color: rgba(249, 244, 241, 1);
+  display: grid;
+  align-items: center;
+  padding: 20px;
+  padding-left: 30px;
+  white-space: nowrap;
 }
 @media screen and (max-width: 1000px) {
  .right-wrapper {
@@ -10,7 +23,7 @@
     grid-template-rows: 1fr;
  } 
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
  .right-wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: min-content auto;
