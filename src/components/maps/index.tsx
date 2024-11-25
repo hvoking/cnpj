@@ -6,10 +6,13 @@ import { Pin } from './pin';
 import { Isochrone } from './iso';
 import { Tiles } from './tiles';
 import { Clusters } from './clusters';
+import { Circle } from './circle';
+import { Avatar } from './avatar';
 import './styles.scss';
 
 // Context imports
 import { useGeo } from 'context/geo';
+import { useEvents } from 'context/maps/events';
 
 // Third-party imports
 import { Map } from 'react-map-gl';
@@ -17,6 +20,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 export const Maps = () => {
 	const { viewport, setMarker, setViewport, mapRef, basemap } = useGeo();
+	const { isDragging, onDragStart, onMouseMove, onDragEnd } = useEvents();
 
 	const onDblClick = useCallback((event: any) => {
 		const { lat, lng } = event.lngLat;
@@ -34,11 +38,20 @@ export const Maps = () => {
 				onDblClick={onDblClick}
 				doubleClickZoom={false}
 				preserveDrawingBuffer={true}
+				onMouseDown={onDragStart}
+		        onMouseMove={onMouseMove}
+		        onMouseUp={onDragEnd}
+		        onTouchStart={onDragStart}
+		        onTouchMove={onMouseMove}
+		        onTouchEnd={onDragEnd}
+		        dragPan={!isDragging}
 			>
 				<Pin/>
 				<Isochrone/>
 				<Clusters/>
 				<Tiles/>
+				<Circle/>
+				<Avatar/>
 			</Map>
 		</div>
 	)

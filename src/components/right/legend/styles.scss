@@ -1,11 +1,20 @@
-.legend {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: min-content min-content auto min-content;
-  align-items: center;
+.gauge-legend-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	justify-content: space-between;
+	background-color: rgba(249, 244, 241, 1);
+	padding-top: 5px;
 }
-.legend-item {
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
+.gauge-legend-item {
+	display: flex; 
+	gap: 5px; 
+	white-space: nowrap;
+}
+.legend-icon {
+	width: 10px; 
+	height: 10px;
+	border-radius: 50%;
 }

@@ -1,7 +1,8 @@
 // App imports
 import { Balls } from './balls';
-// import { Legend } from './legend';
+import { Legend } from './legend';
 import { Gauge } from './gauge';
+import { Ranking } from './ranking';
 import './styles.scss';
 
 // Context imports
@@ -49,16 +50,17 @@ export const Right = () => {
 				cnpjProperties={cnpjProperties} 
 				parcialCounts={parcialCounts}
 			/>
-			{/*<Legend 
-				cnpjProperties={cnpjProperties} 
-				parcialCounts={parcialCounts}
-			/>*/}
 			<div className="legend-wrapper">
-			<Gauge 
-				cnpjProperties={cnpjProperties}
-				parcialCounts={parcialCounts}
-			/>
+				<Gauge 
+					cnpjProperties={cnpjProperties}
+					parcialCounts={parcialCounts}
+				/>
 			</div>
+			<Legend 
+				cnpjProperties={cnpjProperties} 
+				data={parcialCounts}
+			/>
+			<Ranking cnpjProperties={cnpjProperties} parcialCounts={parcialCounts}/>
 		</div>
 	)
 }

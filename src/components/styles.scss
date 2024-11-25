@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 19fr 5fr;
   padding: 5px;
+  grid-gap: 5px;
 }
 @media screen and (max-width: 1000px) {
   .main-wrapper {

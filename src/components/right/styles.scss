@@ -1,8 +1,6 @@
 .right-wrapper {
   display: grid;
   grid-gap: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 .right-component-wrapper {
   background-color: rgba(249, 244, 241, 1);
@@ -16,12 +14,8 @@
   padding: 20px;
   padding-left: 30px;
   white-space: nowrap;
-}
-@media screen and (max-width: 1000px) {
- .right-wrapper {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
- } 
+  font-size: 0.6em;
+  grid-gap: 5px;
 }
 @media screen and (max-width: 768px) {
  .right-wrapper {

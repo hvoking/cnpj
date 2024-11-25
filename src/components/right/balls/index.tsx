@@ -26,15 +26,11 @@ export const Balls = ({ cnpjProperties, parcialCounts }: any) => {
 
     const ballSize = containerSize > 0 ? containerSize / 10 - 7 : 0; // Adjust for gaps
 
-
 	return (
 		<div className="right-component-wrapper" ref={containerRef}>
 			<div 
                 className="balls"
-                style={{
-                    width: containerSize,
-                    height: containerSize,
-                }}
+                style={{ width: containerSize, height: containerSize }}
             >
 				{Object.keys(parcialCounts).map((item: string) => {
                     const backgroundColor = cnpjProperties[item].color;

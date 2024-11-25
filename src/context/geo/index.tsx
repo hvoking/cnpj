@@ -17,6 +17,8 @@ export const GeoProvider = ({children}: any) => {
 	const [ viewport, setViewport ] = useState(Locations.blumenau);
 	const [ basemap, setBasemap ] = useState("mapbox://styles/hvoking/clygh6abe01fv01qrd3y0105g");
 
+	const [ initialState, setInitialState ] = useState(false);
+
 	const { latitude, longitude } = viewport;
 	
 	const [ marker, setMarker ] = useState({ latitude: latitude, longitude: longitude });
@@ -40,7 +42,8 @@ export const GeoProvider = ({children}: any) => {
 		<GeoContext.Provider value={{
 			viewport, setViewport, 
 			marker, setMarker,
-			mapRef, basemap, setBasemap
+			mapRef, basemap, setBasemap,
+			initialState, setInitialState
 		}}>
 			{children}
 		</GeoContext.Provider>
