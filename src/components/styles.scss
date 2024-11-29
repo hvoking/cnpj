@@ -1,10 +1,11 @@
 .main-wrapper {
-  background-color: rgba(227, 218, 201, 1);
+  background-color: rgba(23, 23, 32, 1);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 19fr 5fr;
+  grid-template-columns: 160px 19fr 5fr;
   padding: 5px;
   grid-gap: 5px;
+  color: rgba(255, 255, 255, 1);
 }
 @media screen and (max-width: 768px) {
   .main-wrapper {

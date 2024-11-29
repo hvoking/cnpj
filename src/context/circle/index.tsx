@@ -1,5 +1,5 @@
 // React imports
-import { useState, useContext, createContext } from 'react';
+import { useContext, createContext } from 'react';
 
 // Third-party libraries
 import * as turf from '@turf/turf';
@@ -13,16 +13,11 @@ export const useCircle = () => {
 }
 
 export const CircleProvider = ({children}: any) => {
-	
-	
-
 	const createCircle = (center: any, circleRadius: any) => {
 		const circleGeometry: any = turf.circle(center, circleRadius);	
 		// const difference = turf.difference(turf.featureCollection([wrapperGeometry, circleGeometry]));
 		return circleGeometry
 	}
-
-
 
 	return (
 		<CircleContext.Provider value={{ 

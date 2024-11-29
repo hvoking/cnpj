@@ -1,20 +1,19 @@
 .right-wrapper {
   display: grid;
   grid-gap: 5px;
+  grid-template-rows: min-content auto;
 }
 .right-component-wrapper {
-  background-color: rgba(249, 244, 241, 1);
+  background-color: rgba(33, 33, 43, 1);
   padding: 20px;
   max-width: calc(100% - 40px);
 }
 .legend-wrapper {
-  background-color: rgba(249, 244, 241, 1);
+  background-color: rgba(33, 33, 43, 1);
   display: grid;
   align-items: center;
   padding: 20px;
-  padding-left: 30px;
   white-space: nowrap;
-  font-size: 0.6em;
   grid-gap: 5px;
 }
 @media screen and (max-width: 768px) {

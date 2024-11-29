@@ -7,7 +7,6 @@ import { Tiles } from './tiles';
 import { Clusters } from './clusters';
 import { Circle } from './circle';
 import { Avatar } from './avatar';
-import { Catchment } from '../catchment';
 import './styles.scss';
 
 // Context imports
@@ -52,7 +51,6 @@ export const Maps = () => {
 				<Tiles/>
 				<Avatar/>
 			</Map>
-			<Catchment/>
 		</div>
 	)
 }

@@ -11,6 +11,7 @@ import { useIsochrone } from 'context/api/isochrone';
 
 // Third-party imports
 import * as turf from '@turf/turf';
+import * as d3 from 'd3';
 
 const MaskContext: React.Context<any> = createContext(null)
 
@@ -76,8 +77,43 @@ export const MaskProvider = ({children}: any) => {
 	  return features.length > 0 ? { type: 'FeatureCollection', features } : null;
 	}, [ maskProperties ]);
 
+	const filteredCounts = geoJsonData &&
+        geoJsonData.features.reduce((total: any, item: any) => {
+            const currentKey = item.properties.label;
+            if (currentKey) {
+                total[currentKey] = (total[currentKey] || 0) + 1;
+            }
+            return total;
+        }, {});
+
+	const totalCount = filteredCounts && d3.sum(Object.values(filteredCounts));
+	const parcialCounts: any = {}
+	
+	if (totalCount) {
+        const scaledCounts = Object.keys(filteredCounts).map((key: any) => ({
+            key,
+            count: filteredCounts[key],
+            percentage: filteredCounts[key] / totalCount,
+        }));
+
+        let remaining = 100;
+        scaledCounts.forEach((item, index) => {
+            const isLast = index === scaledCounts.length - 1;
+            const count = isLast
+                ? remaining // Allocate remaining balls to the last category
+                : Math.round(item.percentage * 100);
+            parcialCounts[item.key] = count;
+            remaining -= count;
+        });
+    }
+
+    const sortedData: any = Object.fromEntries(
+      Object.entries(parcialCounts).sort(([, a]: any, [, b]: any) => b - a)
+
+    );
+
 	return (
-		<MaskContext.Provider value={{ geoJsonData }}>
+		<MaskContext.Provider value={{ geoJsonData, parcialCounts, sortedData }}>
 			{children}
 		</MaskContext.Provider>
 	)
