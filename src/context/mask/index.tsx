@@ -1,5 +1,5 @@
 // React imports
-import { useState, useEffect, useMemo, useContext, createContext } from 'react';
+import { useContext, createContext } from 'react';
 
 // App imports
 import { getLabel, getColor } from './utils';
@@ -12,6 +12,7 @@ import { useIsochrone } from 'context/api/isochrone';
 // Third-party imports
 import * as turf from '@turf/turf';
 import * as d3 from 'd3';
+import { signal } from '@preact/signals-react';
 
 const MaskContext: React.Context<any> = createContext(null)
 
@@ -25,59 +26,40 @@ export const MaskProvider = ({children}: any) => {
 	const { mapRef } = useGeo();
 	const { isochroneData } = useIsochrone();
 
-	const [ maskProperties, setMaskProperties ] = useState([]);
-	const [ activeFeatures, setActiveFeatures ] = useState(false);
+	const mapFeatures = signal<any>(null);
+	const map = mapRef.current;
 
-	useEffect(() => {
-		const map = mapRef.current;
-		if (!map) return;
-		const onData = (e: any) => e.tile && setActiveFeatures((prev) => !prev);
-	    map.on('data', onData);
-	    return () => {map.off('data', onData)};
-	}, [ mapRef.current ]);
+	mapFeatures.value = map ? map.queryRenderedFeatures() : [];
+	  
+	const features = mapFeatures.value
+		.filter((item: any) => 
+			item.source === 'sc-business' &&
+			turf.booleanPointInPolygon(item.geometry, isochroneData.features[0].geometry)
+		)
+		.flatMap((maskProp: any) => {
+			const { geometry, properties } = maskProp;
+			const { cnae_divisao } = properties;
 
-	useEffect(() => {
-		const map = mapRef.current;
-		if (!map) return;
-		const features = map.queryRenderedFeatures();
-		const maskFeatures = features.filter((item: any) => {
-			const featureGeometry = isochroneData.features[0].geometry;
-			if (item.source === 'sc-business') {
-			    return turf.booleanPointInPolygon(item.geometry, featureGeometry);
-			}
-		});	
-		setMaskProperties(maskFeatures);
-	}, [ activeFeatures ]);
+			const color = getColor(cnpjProperties, cnae_divisao);
+			const label = getLabel(cnpjProperties, cnae_divisao);
 
-	const geoJsonData: any = useMemo(() => {
-	  if (!maskProperties || maskProperties.length === 0) return null;
+			return [{
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					coordinates: geometry.coordinates,
+				},
+				properties: {
+					...properties,
+					color: color,
+					label: label
+				}
+			}];
+		});
 
-	  const features = maskProperties.flatMap((maskProp: any) => {
-	    const { geometry, properties } = maskProp;
-	    const { cnae_divisao } = properties;
+	const geoJsonData = { type: 'FeatureCollection', features };
 
-	    const coord = geometry.coordinates;
-	    const color = getColor(cnpjProperties, cnae_divisao);
-	    const label = getLabel(cnpjProperties, cnae_divisao);
-
-	    return [{
-	      type: 'Feature',
-	      geometry: {
-	        type: 'Point',
-	        coordinates: coord,
-	      },
-	      properties: {
-	        ...properties,
-	        color: color,
-	        label: label
-	      }
-	    }];
-	  });
-
-	  return features.length > 0 ? { type: 'FeatureCollection', features } : null;
-	}, [ maskProperties ]);
-
-	const filteredCounts = geoJsonData &&
+	const filteredCounts =
         geoJsonData.features.reduce((total: any, item: any) => {
             const currentKey = item.properties.label;
             if (currentKey) {
@@ -109,7 +91,6 @@ export const MaskProvider = ({children}: any) => {
 
     const sortedData: any = Object.fromEntries(
       Object.entries(parcialCounts).sort(([, a]: any, [, b]: any) => b - a)
-
     );
 
 	return (

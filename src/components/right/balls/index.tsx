@@ -13,7 +13,7 @@ export const Balls = ({ cnpjProperties, parcialCounts }: any) => {
             if (containerRef.current) {
                 const width = containerRef.current.offsetWidth;
                 const height = window.innerHeight; // Consider viewport height
-                const size = Math.min(width, height) * 0.9; // 90% of the smallest dimension
+                const size = Math.min(width, height) * 1; // 90% of the smallest dimension
                 setContainerSize(size);
             }
         };

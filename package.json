@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://hvoking.github.io/cnpj",
   "dependencies": {
+    "@preact/signals-react": "^2.3.0",
     "@turf/turf": "^7.1.0",
     "@types/d3": "^7.4.0",
     "@types/react": "^18.0.28",
