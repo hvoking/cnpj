@@ -15,7 +15,7 @@ export const useGeo = () => {
 export const GeoProvider = ({children}: any) => {
 	const mapRef = useRef<any>();
 	const [ viewport, setViewport ] = useState(Locations.blumenau);
-	const [ basemap, setBasemap ] = useState("mapbox://styles/hvoking/clrwzn1jo015q01nl53664m2c");
+	const [ basemap, setBasemap ] = useState("mapbox://styles/hvoking/cm16kxow500ez01pc3psqc4pv");
 
 	const [ initialState, setInitialState ] = useState(false);
 

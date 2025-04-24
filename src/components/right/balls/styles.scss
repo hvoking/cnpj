@@ -1,8 +1,8 @@
 .balls {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-gap: 7px; // Space between balls
+    grid-gap: 7px;
     margin: auto;
-    aspect-ratio: 1; // Maintain square shape automatically
-    overflow: hidden; // Prevent overflow
+    aspect-ratio: 1;
+    overflow: hidden;
 }

@@ -1,11 +1,12 @@
+@import 'variables';
+
 .main-wrapper {
-  background-color: rgba(23, 23, 32, 1);
   overflow: hidden;
   display: grid;
   grid-template-columns: 160px 19fr 5fr;
   padding: 5px;
   grid-gap: 5px;
-  color: rgba(255, 255, 255, 1);
+  background: $background-color;
 }
 @media screen and (max-width: 768px) {
   .main-wrapper {
