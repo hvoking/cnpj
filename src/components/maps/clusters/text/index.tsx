@@ -1,5 +1,5 @@
 // Third party imports
-import type { LayerProps } from 'react-map-gl';
+import type { LayerProps } from 'react-map-gl/mapbox';
 
 export const createText = (source: string): LayerProps => ({
   id: `${source}-cluster-count`,

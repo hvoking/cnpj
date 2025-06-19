@@ -14,7 +14,7 @@ import { useGeo } from 'context/geo';
 import { useEvents } from 'context/maps/events';
 
 // Third-party imports
-import { Map } from 'react-map-gl';
+import { Map } from 'react-map-gl/mapbox';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 export const Maps = () => {

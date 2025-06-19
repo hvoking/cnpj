@@ -1,8 +1,8 @@
-// Third party imports
-import { Source, Layer } from 'react-map-gl';
-
 // Context imports
 import { useMask } from 'context/mask';
+
+// Third party imports
+import { Source, Layer } from 'react-map-gl/mapbox';
 
 export const Circles = ({ label, clusterLayer, textLayer }: any) => {
 	const { geoJsonData } = useMask();

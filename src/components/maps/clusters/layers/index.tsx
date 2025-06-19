@@ -1,5 +1,5 @@
 // Third party imports
-import type { LayerProps } from 'react-map-gl';
+import type { LayerProps } from 'react-map-gl/mapbox';
 
 export const createLayer = (source: string, color: string): LayerProps => ({
   id: `${source}-clusters`,

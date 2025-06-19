@@ -2,7 +2,7 @@
 import { useStyles } from 'context/api/styles';
 
 // Third party imports
-import { Source, Layer } from 'react-map-gl';
+import { Source, Layer } from 'react-map-gl/mapbox';
 
 export const Points = () => {
 	const { getTilesUrl } = useStyles();

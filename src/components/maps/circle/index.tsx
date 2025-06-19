@@ -4,7 +4,7 @@ import { useGeo } from 'context/geo';
 import { useIsochrone } from 'context/api/isochrone';
 
 // Third party imports
-import { Source, Layer, LayerProps } from 'react-map-gl';
+import { Source, Layer, LayerProps } from 'react-map-gl/mapbox';
 
 import * as turf from "@turf/turf";
 

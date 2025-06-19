@@ -2,7 +2,7 @@
 import { useMask } from 'context/mask';
 
 // Third-party imports
-import { Source, Layer } from 'react-map-gl';
+import { Source, Layer } from 'react-map-gl/mapbox';
 
 export const Mask = () => {
   const { geoJsonData } = useMask();
