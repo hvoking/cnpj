@@ -6,7 +6,7 @@ import { SizesProvider } from './sizes';
 import { CircleProvider } from './circle';
 import { MapsProvider } from './maps';
 
-export const MainProvider = ({children}: any) => {
+export const ContextProvider = ({children}: any) => {
   return (
     <GeoProvider>
     <ApiProvider>
@@ -24,4 +24,4 @@ export const MainProvider = ({children}: any) => {
   )
 }
 
-MainProvider.displayName="MainProvider";
+ContextProvider.displayName="ContextProvider";

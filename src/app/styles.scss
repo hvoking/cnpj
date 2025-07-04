@@ -1,15 +1,22 @@
 @import 'variables';
 
-.main-wrapper {
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: montserrat;
+}
+.App {
   overflow: hidden;
   display: grid;
   grid-template-columns: 160px 19fr 5fr;
   padding: 5px;
   grid-gap: 5px;
   background: $background-color;
+    height: calc(var(--vh, 1vh) * 100);
+  max-height: calc(var(--vh, 1vh) * 100);
 }
 @media screen and (max-width: 768px) {
-  .main-wrapper {
+  .App {
     grid-template-columns: auto;
     grid-template-rows: 1fr 1fr;
   }
